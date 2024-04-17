@@ -39,28 +39,31 @@ function fetchPlaceTextSearch(query) {
 }
 
 function showModal(placeId, formattedAddress, displayName) {
-	const modal = document.getElementById("modal");
-	const modalContent = modal.querySelector(".relative");
-	const title = modal.querySelector("#modal-title");
+    const modal = document.getElementById("modal");
+    const modalContent = modal.querySelector(".relative");
+    const title = modal.querySelector("#modal-title");
+    const displayNameElement = modal.querySelector("#modal-display-name");
+    const formattedAddressElement = modal.querySelector("#modal-formatted-address");
 
-	title.textContent = `Review Link Gevonden voor ${displayName}`;
+    title.textContent = "Review link gevonden!";
+    displayNameElement.textContent = displayName;
+    formattedAddressElement.textContent = formattedAddress;
+    
+    document.getElementById("copy-button").onclick = function () {
+        navigator.clipboard.writeText(`https://search.google.com/local/writereview?placeid=${placeId}`);
+    };
 
-	document.getElementById("copy-button").onclick = function () {
-		navigator.clipboard.writeText(
-			`https://search.google.com/local/writereview?placeid=${placeId}`
-		);
-	};
+    modal.classList.remove("hidden");
 
-	modal.classList.remove("hidden");
-
-	// Ensure initial styles are in the DOM.
-	requestAnimationFrame(() => {
-		requestAnimationFrame(() => {
-			modalContent.classList.add("opacity-100", "scale-100");
-			modalContent.classList.remove("opacity-0", "scale-95");
-		});
-	});
+    // Ensure initial styles are in the DOM.
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            modalContent.classList.add("opacity-100", "scale-100");
+            modalContent.classList.remove("opacity-0", "scale-95");
+        });
+    });
 }
+
 
 function hideModal() {
 	const modal = document.getElementById("modal");

@@ -40,18 +40,12 @@
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                 <div
-                    class="relative opacity-0 scale-95 transform transition-all duration-300 ease-out w-full max-w-lg p-6 bg-white rounded-lg shadow-xl sm:my-8">
-                    <div>
-                        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                            <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                            </svg>
-                        </div>
-                        <div class="mt-3 text-center sm:mt-5">
-                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Review link
-                                gevonden!</h3>
-                        </div>
+                    class="relative transform transition-all duration-300 ease-out opacity-0 scale-95 w-full max-w-lg p-6 bg-white rounded-lg shadow-xl sm:my-8">
+                    <div class="text-center">
+                        <h3 class="text-lg font-semibold leading-6 text-gray-900" id="modal-title">Review link gevonden!
+                        </h3>
+                        <p class="mt-2 text-sm font-medium text-gray-800" id="modal-display-name"></p>
+                        <p class="mt-1 text-sm text-gray-600" id="modal-formatted-address"></p>
                     </div>
                     <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                         <button type="button" id="copy-button"
@@ -62,6 +56,7 @@
                             terug</button>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
