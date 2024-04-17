@@ -2,11 +2,11 @@ const input = document.getElementById("location-input");
 const btnShowModal = document.getElementById("show-modal-btn");
 
 btnShowModal.addEventListener("click", () => {
-    if (input.value) {
-        fetchPlaceTextSearch(input.value);
-    }
+	if (input.value) {
+		fetchPlaceTextSearch(input.value);
+	}
 
-    input.value = "";
+	input.value = "";
 });
 
 function fetchPlaceTextSearch(query) {
@@ -40,9 +40,11 @@ function fetchPlaceTextSearch(query) {
 
 function showModal(placeId, formattedAddress, displayName) {
 	const modal = document.getElementById("modal");
+	const modalContent = modal.querySelector(".relative");
 	const title = modal.querySelector("#modal-title");
 
 	title.textContent = `Review Link Gevonden voor ${displayName}`;
+
 	document.getElementById("copy-button").onclick = function () {
 		navigator.clipboard.writeText(
 			`https://search.google.com/local/writereview?placeid=${placeId}`
@@ -50,13 +52,26 @@ function showModal(placeId, formattedAddress, displayName) {
 	};
 
 	modal.classList.remove("hidden");
-	modal.querySelector(".relative").classList.add("opacity-100", "scale-100");
+
+	// Ensure initial styles are in the DOM.
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			modalContent.classList.add("opacity-100", "scale-100");
+			modalContent.classList.remove("opacity-0", "scale-95");
+		});
+	});
 }
 
 function hideModal() {
 	const modal = document.getElementById("modal");
-	modal.classList.add("hidden");
-	modal.querySelector(".relative").classList.add("opacity-0", "scale-95");
+	const modalContent = modal.querySelector(".relative");
+
+	modalContent.classList.add("opacity-0", "scale-95");
+	modalContent.classList.remove("opacity-100", "scale-100");
+
+	setTimeout(() => {
+		modal.classList.add("hidden");
+	}, 300); // Ensure this matches the transition duration
 }
 
 window.onload = function () {
