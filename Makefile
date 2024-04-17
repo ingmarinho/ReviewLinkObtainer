@@ -1,2 +1,2 @@
 css:
-	@tailwindcss -i app.css -o public/styles.css --watch
+	@tailwindcss -i input.css -o public/output.css --watch
